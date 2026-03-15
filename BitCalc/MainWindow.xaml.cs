@@ -268,26 +268,26 @@ namespace BitCalc
                 case "16進数":
                     this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
                     this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.DispBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
                     this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
                     break;
                 case "10進数":
                     this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
                     this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
-                    this.DispBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
-                    this.BtnBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
                     break;
                 case "2進数":
                     this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
                     this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.DispBit.Foreground = System.Windows.Media.Brushes.Black;
+                    this.DispBin.Foreground = System.Windows.Media.Brushes.Black;
                     this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnBit.Foreground = System.Windows.Media.Brushes.Black;
+                    this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
                     break;
                 default:
                     break;
