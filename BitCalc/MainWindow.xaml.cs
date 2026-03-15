@@ -245,5 +245,54 @@ namespace BitCalc
             RoundSmall = 3
         }
 
+        private void KeyClick( object sender, RoutedEventArgs e )
+        {
+            if( sender is Button button )
+            {
+                if( button.Content is string str )
+                {
+                    this.KeyDisp( str );
+
+                    if( this.DataContext is MainVM vm )
+                    {
+                        vm.UpdateStatusMessage( $"Button '{str}' clicked." );
+                    }
+                }
+            }
+        }
+
+        private void KeyDisp( string str )
+        {
+            switch( str )
+            {
+                case "16進数":
+                    this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
+                    this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.DispBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
+                    this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    break;
+                case "10進数":
+                    this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
+                    this.DispBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
+                    this.BtnBit.Foreground = System.Windows.Media.Brushes.Silver;
+                    break;
+                case "2進数":
+                    this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.DispBit.Foreground = System.Windows.Media.Brushes.Black;
+                    this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.BtnBit.Foreground = System.Windows.Media.Brushes.Black;
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

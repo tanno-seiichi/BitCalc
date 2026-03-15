@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="{Binding Path=AppTitle}"
-        Height="600"
-        Width="800" WindowStartupLocation="CenterScreen"
+        Height="400"
+        Width="400" WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="True" Background="#CFFFFFFF" BorderThickness="1" BorderBrush="LightGray" ResizeMode="CanResizeWithGrip"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
@@ -49,7 +49,67 @@
 
         <!-- 2. コンテンツ -->
         <Grid Grid.Row="2" Background="Transparent">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/><!-- 0. 16進数 -->
+                <RowDefinition Height="*"/><!-- 1. 10進数 -->
+                <RowDefinition Height="*"/><!-- 2. 2進数 -->
+                <RowDefinition Height="*"/><!-- 3. キー ABC％ -->
+                <RowDefinition Height="*"/><!-- 4. キー DEF÷ -->
+                <RowDefinition Height="*"/><!-- 5. キー 789× -->
+                <RowDefinition Height="*"/><!-- 6. キー 456－ -->
+                <RowDefinition Height="*"/><!-- 7. キー 123＋ -->
+                <RowDefinition Height="*"/><!-- 8. キー AC0.＝ -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/><!-- 0. キー AD741AC-->
+                <ColumnDefinition Width="*"/><!-- 1. キー BE8520 -->
+                <ColumnDefinition Width="*"/><!-- 2. キー CF963 -->
+                <ColumnDefinition Width="*"/><!-- 3. キー ％÷×－＋＝ -->
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispHex" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="15" Background="Transparent" BorderThickness="1,1,0,0" Text="{Binding Path=HexValue, UpdateSourceTrigger=PropertyChanged}" Foreground="Silver"/>
+            <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispDec" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="15" Background="Transparent" BorderThickness="1,1,0,0" Text="{Binding Path=DecValue, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispBit" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="15" Background="Transparent" BorderThickness="1,1,0,0" Text="{Binding Path=BitValue, UpdateSourceTrigger=PropertyChanged}" Foreground="Silver"/>
+
+            <Button Grid.Row="0" Grid.Column="3" x:Name="BtnHex" Content="16進数" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick" Foreground="Silver"/>
+            <Button Grid.Row="1" Grid.Column="3" x:Name="BtnDec" Content="10進数" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick" Foreground="Black"/>
+            <Button Grid.Row="2" Grid.Column="3" x:Name="BtnBit" Content="2進数" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick" Foreground="Silver"/>
+
+            <!-- 3. キー ABC％ -->
+            <Button Grid.Row="3" Grid.Column="0" x:Name="NumA" Content="A" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="0,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="3" Grid.Column="1" x:Name="NumB" Content="B" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="3" Grid.Column="2" x:Name="NumC" Content="C" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="3" Grid.Column="3" x:Name="Mod" Content="％" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+
+            <!-- 4. キー DEF÷ -->
+            <Button Grid.Row="4" Grid.Column="0" x:Name="NumD" Content="D" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="0,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="4" Grid.Column="1" x:Name="NumE" Content="E" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="4" Grid.Column="2" x:Name="NumF" Content="F" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="4" Grid.Column="3" x:Name="Divide" Content="÷" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+
+            <!-- 5. キー 789× -->
+            <Button Grid.Row="5" Grid.Column="0" x:Name="Num7" Content="7" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="0,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="5" Grid.Column="1" x:Name="Num8" Content="8" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="5" Grid.Column="2" x:Name="Num9" Content="9" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="5" Grid.Column="3" x:Name="Multiply" Content="×" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+
+            <!-- 6. キー 456－ -->
+            <Button Grid.Row="6" Grid.Column="0" x:Name="Num4" Content="4" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="0,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="6" Grid.Column="1" x:Name="Num5" Content="5" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="6" Grid.Column="2" x:Name="Num6" Content="6" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="6" Grid.Column="3" x:Name="Subtract" Content="－" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+
+            <!-- 7. キー 123＋ -->
+            <Button Grid.Row="7" Grid.Column="0" x:Name="Num1" Content="1" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="0,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="7" Grid.Column="1" x:Name="Num2" Content="2" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="7" Grid.Column="2" x:Name="Num3" Content="3" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+            <Button Grid.Row="7" Grid.Column="3" x:Name="Add" Content="＋" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,0" Click="KeyClick"/>
+
+            <!-- 8. キー AC0.＝ -->
+            <Button Grid.Row="8" Grid.Column="0" x:Name="AllClear" Content="AC" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="0,1,0,1" Click="KeyClick"/>
+            <Button Grid.Row="8" Grid.Column="1" x:Name="Num0" Content="0" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,1" Click="KeyClick"/>
+            <Button Grid.Row="8" Grid.Column="2" x:Name="Period" Content="." FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,1" Click="KeyClick"/>
+            <Button Grid.Row="8" Grid.Column="3" x:Name="Equal" Content="＝" FontSize="14" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1,1,0,1" Click="KeyClick"/>
         </Grid>
         
         <!-- 3. ステータスバー -->

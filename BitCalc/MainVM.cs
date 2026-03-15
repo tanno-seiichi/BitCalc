@@ -26,5 +26,11 @@ namespace BitCalc
             Properties.Settings.Default.Save();
         }
 
+        public void UpdateStatusMessage( string message )
+        {
+            this.StatusMessage = message;
+            this.RaisePropertyChanged( nameof( this.StatusMessage ) );
+        }
+
     }
 }
