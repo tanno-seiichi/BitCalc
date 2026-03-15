@@ -1,0 +1,25 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="BitCalc" Directory="INSTALLFOLDER">
+		<Component Id="MainExeComponent" Directory="INSTALLFOLDER" Guid="*">
+			<File Id="MainExeFile" Source="BitCalc.exe" KeyPath="yes" />
+      </Component>
+      <Component Id="ConfigComponent">
+        <File Source="BitCalc.exe.config" />
+      </Component>
+
+      <!-- スタートメニューショートカット -->
+      <Component Id="StartMenuShortcutComponent" Directory="ProgramMenuDir" Guid="*">
+	    <Shortcut Id="StartMenuShortcut" Name="BitCalc"
+				  Target="[INSTALLFOLDER]BitCalc.exe" WorkingDirectory="INSTALLFOLDER" >
+		    <ShortcutProperty Key="System.AppUserModel.ID" Value="tanno-seiichi.BitCalc"/>
+		</Shortcut>
+
+		<RemoveFolder Id="RemoveProgramMenuDir" Directory="ProgramMenuDir" On="uninstall" />
+        
+		<RegistryValue Root="HKCU" Key="Software\tanno-seiichi\BitCalc"
+					   Name="StartMenu" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>		
+	</ComponentGroup>
+  </Fragment>
+</Wix>

@@ -1,0 +1,21 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+	 xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package 
+	  Name="BitCalc" 
+	  Manufacturer="tanno-seiichi" 
+	  Version="1.0.0" 
+	  ProductCode="*" 
+	  UpgradeCode="{B02A0C9D-338C-4099-A7C4-CBE212191E50}"
+	  Scope="perMachine">
+	  
+    <MajorUpgrade 
+		DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <ui:WixUI Id="WixUI_Minimal" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+	  
+    <Feature Id="Main">
+      <ComponentGroupRef Id="BitCalc" />
+    </Feature>
+  </Package>
+</Wix>
