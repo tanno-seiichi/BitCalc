@@ -58,6 +58,9 @@ namespace BitCalc
 
             /* 透過表示設定 */
             this.SetTransparency( Properties.Settings.Default.Transparent );
+
+            /* キーの表示設定 */
+            this.KeyDisp( Properties.Settings.Default.KeyDisp );
         }
 
         /// <summary>
@@ -272,6 +275,24 @@ namespace BitCalc
                     this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
                     this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.NumA.IsEnabled = true;
+                    this.NumB.IsEnabled = true;
+                    this.NumC.IsEnabled = true;
+                    this.NumD.IsEnabled = true;
+                    this.NumE.IsEnabled = true;
+                    this.NumF.IsEnabled = true;
+                    this.Num9.IsEnabled = true;
+                    this.Num8.IsEnabled = true;
+                    this.Num7.IsEnabled = true;
+                    this.Num6.IsEnabled = true;
+                    this.Num5.IsEnabled = true;
+                    this.Num4.IsEnabled = true;
+                    this.Num3.IsEnabled = true;
+                    this.Num2.IsEnabled = true;
+                    this.Num1.IsEnabled = true;
+                    this.Num0.IsEnabled = true;
+                    this.DecimalPoint.IsEnabled = false;
+                    Properties.Settings.Default.KeyDisp = str;
                     break;
                 case "10進数":
                     this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
@@ -280,6 +301,24 @@ namespace BitCalc
                     this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
                     this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
+                    this.NumA.IsEnabled = false;
+                    this.NumB.IsEnabled = false;
+                    this.NumC.IsEnabled = false;
+                    this.NumD.IsEnabled = false;
+                    this.NumE.IsEnabled = false;
+                    this.NumF.IsEnabled = false;
+                    this.Num9.IsEnabled = true;
+                    this.Num8.IsEnabled = true;
+                    this.Num7.IsEnabled = true;
+                    this.Num6.IsEnabled = true;
+                    this.Num5.IsEnabled = true;
+                    this.Num4.IsEnabled = true;
+                    this.Num3.IsEnabled = true;
+                    this.Num2.IsEnabled = true;
+                    this.Num1.IsEnabled = true;
+                    this.Num0.IsEnabled = true;
+                    this.DecimalPoint.IsEnabled = true;
+                    Properties.Settings.Default.KeyDisp = str;
                     break;
                 case "2進数":
                     this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
@@ -288,6 +327,24 @@ namespace BitCalc
                     this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
                     this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
+                    this.NumA.IsEnabled = false;
+                    this.NumB.IsEnabled = false;
+                    this.NumC.IsEnabled = false;
+                    this.NumD.IsEnabled = false;
+                    this.NumE.IsEnabled = false;
+                    this.NumF.IsEnabled = false;
+                    this.Num9.IsEnabled = false;
+                    this.Num8.IsEnabled = false;
+                    this.Num7.IsEnabled = false;
+                    this.Num6.IsEnabled = false;
+                    this.Num5.IsEnabled = false;
+                    this.Num4.IsEnabled = false;
+                    this.Num3.IsEnabled = false;
+                    this.Num2.IsEnabled = false;
+                    this.Num1.IsEnabled = true;
+                    this.Num0.IsEnabled = true;
+                    this.DecimalPoint.IsEnabled = false;
+                    Properties.Settings.Default.KeyDisp = str;
                     break;
                 default:
                     break;

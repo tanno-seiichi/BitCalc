@@ -8,5 +8,8 @@
     <Setting Name="Transparent" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="KeyDisp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10進数</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

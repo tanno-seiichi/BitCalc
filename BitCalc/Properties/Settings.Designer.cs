@@ -46,5 +46,17 @@ namespace BitCalc.Properties {
                 this["Transparent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10進数")]
+        public string KeyDisp {
+            get {
+                return ((string)(this["KeyDisp"]));
+            }
+            set {
+                this["KeyDisp"] = value;
+            }
+        }
     }
 }
