@@ -266,88 +266,154 @@ namespace BitCalc
 
         private void KeyDisp( string str )
         {
-            switch( str )
+            if( this.DataContext is MainVM vm )
             {
-                case "16進数":
-                    this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
-                    this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
-                    this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.NumA.IsEnabled = true;
-                    this.NumB.IsEnabled = true;
-                    this.NumC.IsEnabled = true;
-                    this.NumD.IsEnabled = true;
-                    this.NumE.IsEnabled = true;
-                    this.NumF.IsEnabled = true;
-                    this.Num9.IsEnabled = true;
-                    this.Num8.IsEnabled = true;
-                    this.Num7.IsEnabled = true;
-                    this.Num6.IsEnabled = true;
-                    this.Num5.IsEnabled = true;
-                    this.Num4.IsEnabled = true;
-                    this.Num3.IsEnabled = true;
-                    this.Num2.IsEnabled = true;
-                    this.Num1.IsEnabled = true;
-                    this.Num0.IsEnabled = true;
-                    this.DecimalPoint.IsEnabled = false;
-                    Properties.Settings.Default.KeyDisp = str;
-                    break;
-                case "10進数":
-                    this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
-                    this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
-                    this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.NumA.IsEnabled = false;
-                    this.NumB.IsEnabled = false;
-                    this.NumC.IsEnabled = false;
-                    this.NumD.IsEnabled = false;
-                    this.NumE.IsEnabled = false;
-                    this.NumF.IsEnabled = false;
-                    this.Num9.IsEnabled = true;
-                    this.Num8.IsEnabled = true;
-                    this.Num7.IsEnabled = true;
-                    this.Num6.IsEnabled = true;
-                    this.Num5.IsEnabled = true;
-                    this.Num4.IsEnabled = true;
-                    this.Num3.IsEnabled = true;
-                    this.Num2.IsEnabled = true;
-                    this.Num1.IsEnabled = true;
-                    this.Num0.IsEnabled = true;
-                    this.DecimalPoint.IsEnabled = true;
-                    Properties.Settings.Default.KeyDisp = str;
-                    break;
-                case "2進数":
-                    this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.DispBin.Foreground = System.Windows.Media.Brushes.Black;
-                    this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
-                    this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
-                    this.NumA.IsEnabled = false;
-                    this.NumB.IsEnabled = false;
-                    this.NumC.IsEnabled = false;
-                    this.NumD.IsEnabled = false;
-                    this.NumE.IsEnabled = false;
-                    this.NumF.IsEnabled = false;
-                    this.Num9.IsEnabled = false;
-                    this.Num8.IsEnabled = false;
-                    this.Num7.IsEnabled = false;
-                    this.Num6.IsEnabled = false;
-                    this.Num5.IsEnabled = false;
-                    this.Num4.IsEnabled = false;
-                    this.Num3.IsEnabled = false;
-                    this.Num2.IsEnabled = false;
-                    this.Num1.IsEnabled = true;
-                    this.Num0.IsEnabled = true;
-                    this.DecimalPoint.IsEnabled = false;
-                    Properties.Settings.Default.KeyDisp = str;
-                    break;
-                default:
-                    break;
+                switch( str )
+                {
+                    case "16進数":
+                        this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.NumA.IsEnabled = true;
+                        this.NumB.IsEnabled = true;
+                        this.NumC.IsEnabled = true;
+                        this.NumD.IsEnabled = true;
+                        this.NumE.IsEnabled = true;
+                        this.NumF.IsEnabled = true;
+                        this.Num9.IsEnabled = true;
+                        this.Num8.IsEnabled = true;
+                        this.Num7.IsEnabled = true;
+                        this.Num6.IsEnabled = true;
+                        this.Num5.IsEnabled = true;
+                        this.Num4.IsEnabled = true;
+                        this.Num3.IsEnabled = true;
+                        this.Num2.IsEnabled = true;
+                        this.Num1.IsEnabled = true;
+                        this.Num0.IsEnabled = true;
+                        this.DecimalPoint.IsEnabled = false;
+                        Properties.Settings.Default.KeyDisp = str;
+                        break;
+                    case "10進数":
+                        this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.NumA.IsEnabled = false;
+                        this.NumB.IsEnabled = false;
+                        this.NumC.IsEnabled = false;
+                        this.NumD.IsEnabled = false;
+                        this.NumE.IsEnabled = false;
+                        this.NumF.IsEnabled = false;
+                        this.Num9.IsEnabled = true;
+                        this.Num8.IsEnabled = true;
+                        this.Num7.IsEnabled = true;
+                        this.Num6.IsEnabled = true;
+                        this.Num5.IsEnabled = true;
+                        this.Num4.IsEnabled = true;
+                        this.Num3.IsEnabled = true;
+                        this.Num2.IsEnabled = true;
+                        this.Num1.IsEnabled = true;
+                        this.Num0.IsEnabled = true;
+                        this.DecimalPoint.IsEnabled = true;
+                        Properties.Settings.Default.KeyDisp = str;
+                        break;
+                    case "2進数":
+                        this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.DispBin.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
+                        this.NumA.IsEnabled = false;
+                        this.NumB.IsEnabled = false;
+                        this.NumC.IsEnabled = false;
+                        this.NumD.IsEnabled = false;
+                        this.NumE.IsEnabled = false;
+                        this.NumF.IsEnabled = false;
+                        this.Num9.IsEnabled = false;
+                        this.Num8.IsEnabled = false;
+                        this.Num7.IsEnabled = false;
+                        this.Num6.IsEnabled = false;
+                        this.Num5.IsEnabled = false;
+                        this.Num4.IsEnabled = false;
+                        this.Num3.IsEnabled = false;
+                        this.Num2.IsEnabled = false;
+                        this.Num1.IsEnabled = true;
+                        this.Num0.IsEnabled = true;
+                        this.DecimalPoint.IsEnabled = false;
+                        Properties.Settings.Default.KeyDisp = str;
+                        break;
+                    case "A":
+                    case "B":
+                    case "C":
+                    case "D":
+                    case "E":
+                    case "F":
+                    case "9":
+                    case "8":
+                    case "7":
+                    case "6":
+                    case "5":
+                    case "4":
+                    case "3":
+                    case "2":
+                    case "1":
+                    case "0":
+                    case ".":
+                        switch( Properties.Settings.Default.KeyDisp )
+                        {
+                            case "16進数":
+                                if( vm.HexValue.Equals( "0" ) )
+                                {
+                                    vm.HexValue = str;
+                                }
+                                else
+                                {
+                                    vm.HexValue = vm.HexValue + str;
+                                }
+                                break;
+                            case "10進数":
+                                vm.DecValue = long.Parse( vm.DecValue.ToString() + str );
+                                break;
+                            case "2進数":
+                                if( vm.BinValue.Equals( "0" ) )
+                                {
+                                    vm.BinValue = str; 
+                                }
+                                else
+                                {
+                                    vm.BinValue = vm.BinValue + str;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case "AC":
+                        vm.DecValue = 0;
+                        break;
+                    case "％":
+                        break;
+                    case "÷":
+                        break;
+                    case "×":
+                        break;
+                    case "－":
+                        break;
+                    case "＋":
+                        break;
+                    case "＝":
+                        break;
+                    default:
+                        // 処理なし
+                        break;
+                }
+
             }
         }
 
