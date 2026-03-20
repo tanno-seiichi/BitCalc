@@ -50,6 +50,8 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
             <Setter Property="FontSize" Value="15"/>
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TextBoxPreviewMouseLeftButtonDown"/>
+            <EventSetter Event="GotKeyboardFocus" Handler="TextBoxGotKeyboardFocus"/>
         </Style>
     </Window.Resources>
 

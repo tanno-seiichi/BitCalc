@@ -248,6 +248,37 @@ namespace BitCalc
             RoundSmall = 3
         }
 
+        /// <summary>
+        /// マウスクリックされたテキストボックスにキーボードフォーカスを設定する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxPreviewMouseLeftButtonDown( object sender, System.Windows.Input.MouseButtonEventArgs e )
+        {
+            if( sender is TextBox textBox )
+            {
+                if( !textBox.IsKeyboardFocusWithin )
+                {
+                    e.Handled = true;
+                    textBox.Focus();
+                }
+            }
+        }
+
+        /// <summary>
+        /// キーボードフォーカスしたテキストボックスのすべての内容を選択する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxGotKeyboardFocus( object sender, RoutedEventArgs e )
+        {
+            if( sender is TextBox textBox )
+            {
+                    textBox.SelectAll();
+                    e.Handled = true;
+            }
+        }
+
         private void KeyClick( object sender, RoutedEventArgs e )
         {
             if( sender is Button button )
