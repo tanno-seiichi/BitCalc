@@ -164,6 +164,7 @@ namespace BitCalc
                 default:
                     break;
             }
+                    this.UpdateStatusMessage( $"{ Convert.ToString( Properties.Settings.Default.PreviousValue, 2 ).ToUpper() } { Properties.Settings.Default.Operator } { Convert.ToString( Properties.Settings.Default.CurrentValue, 2 ) } ＝ {Convert.ToString( result, 2 )}" );
             this.DecValue = result.ToString();
         }
 
