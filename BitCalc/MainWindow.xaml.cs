@@ -441,8 +441,9 @@ namespace BitCalc
                                 }
                                 else
                                 {
-                                    if( vm.HexValue.Equals( "1" ) )
+                                    if( vm.HexValue.Length.Equals( 1 ) )
                                     {
+                                        /* 値が1桁の時に←をクリックした時は値を0にする */
                                         vm.HexValue = "0";
                                     }
                                 }
@@ -454,8 +455,9 @@ namespace BitCalc
                                 }
                                 else
                                 {
-                                    if( vm.DecValue.Equals( "1" ) )
+                                    if( vm.DecValue.Length.Equals( 1 ) )
                                     {
+                                        /* 値が1桁の時に←をクリックした時は値を0にする */
                                         vm.DecValue = "0";
                                     }
                                 }
@@ -467,8 +469,9 @@ namespace BitCalc
                                 }
                                 else
                                 {
-                                    if( vm.BinValue.Equals( "1" ) )
+                                    if( vm.BinValue.Length.Equals( 1 ) )
                                     {
+                                        /* 値が1桁の時に←をクリックした時は値を0にする */
                                         vm.BinValue = "0";
                                     }
                                 }
