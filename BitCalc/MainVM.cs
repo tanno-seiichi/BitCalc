@@ -20,6 +20,8 @@ namespace BitCalc
         {
             this.AppTitle = Assembly.GetExecutingAssembly().GetName().Name + " v" + Assembly.GetExecutingAssembly().GetName().Version;
             this.RaisePropertyChanged( nameof( this.AppTitle ) );
+
+            this.DecValue = Properties.Settings.Default.CurrentValue.ToString();
         }
 
         public void Save()
@@ -57,6 +59,9 @@ namespace BitCalc
 
                     // 10進数を16進数に変換して保存
                     this.m_HexValue = value.ToUpper();
+
+                    // 現在の値を記録
+                    Properties.Settings.Default.CurrentValue = this.m_DecValue;
                 }
                 catch( Exception )
                 {
@@ -68,21 +73,27 @@ namespace BitCalc
         }
 
         private long m_DecValue = 0;
-        public long DecValue
+        public string DecValue
         {
-            get { return m_DecValue; }
+            get { return m_DecValue.ToString(); }
             set
             {
                 try
                 {
+                    // 文字列を10進数に変換
+                    long decValue = string.IsNullOrEmpty( value ) ? 0 : Convert.ToInt64( value, 10 );
+
                     // 10進数を16進数に変換して保存
-                    this.m_HexValue = Convert.ToString( value, 16 ).ToUpper();
+                    this.m_HexValue = Convert.ToString( decValue, 16 ).ToUpper();
 
                     // 10進数を2進数に変換して保存
-                    this.m_BinValue = Convert.ToString( value, 2 );
+                    this.m_BinValue = Convert.ToString( decValue, 2 );
 
                     // 10進数を保存
-                    this.m_DecValue = value;
+                    this.m_DecValue = decValue;
+
+                    // 現在の値を記録
+                    Properties.Settings.Default.CurrentValue = this.m_DecValue;
                 }
                 catch( Exception )
                 {
@@ -117,6 +128,9 @@ namespace BitCalc
 
                     // 2進数を保存
                     this.m_BinValue = value;
+
+                    // 現在の値を記録
+                    Properties.Settings.Default.CurrentValue = this.m_DecValue;
                 }
                 catch( Exception )
                 {
@@ -125,6 +139,32 @@ namespace BitCalc
 
                 this.UpdateDisp();
             }
+        }
+
+        public void Calc()
+        {
+            long result = 0;
+            switch( Properties.Settings.Default.Operator )
+            {
+                case "％":
+                    result = Properties.Settings.Default.PreviousValue % Properties.Settings.Default.CurrentValue;
+                    break;
+                case "÷":
+                    result = Properties.Settings.Default.PreviousValue / Properties.Settings.Default.CurrentValue;
+                    break;
+                case "×":
+                    result = Properties.Settings.Default.PreviousValue * Properties.Settings.Default.CurrentValue;
+                    break;
+                case "－":
+                    result = Properties.Settings.Default.PreviousValue - Properties.Settings.Default.CurrentValue;
+                    break;
+                case "＋":
+                    result = Properties.Settings.Default.PreviousValue + Properties.Settings.Default.CurrentValue;
+                    break;
+                default:
+                    break;
+            }
+            this.DecValue = result.ToString();
         }
 
         private void UpdateDisp()

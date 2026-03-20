@@ -58,5 +58,53 @@ namespace BitCalc.Properties {
                 this["KeyDisp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long PreviousValue {
+            get {
+                return ((long)(this["PreviousValue"]));
+            }
+            set {
+                this["PreviousValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long CurrentValue {
+            get {
+                return ((long)(this["CurrentValue"]));
+            }
+            set {
+                this["CurrentValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Operator {
+            get {
+                return ((string)(this["Operator"]));
+            }
+            set {
+                this["Operator"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NextValue {
+            get {
+                return ((bool)(this["NextValue"]));
+            }
+            set {
+                this["NextValue"] = value;
+            }
+        }
     }
 }

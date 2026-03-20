@@ -271,12 +271,12 @@ namespace BitCalc
                 switch( str )
                 {
                     case "16進数":
-                        this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
-                        this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
-                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.DispHex.Foreground = System.Windows.Media.Brushes.Red;
+                        this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispBin.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Red;
+                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
                         this.NumA.IsEnabled = true;
                         this.NumB.IsEnabled = true;
                         this.NumC.IsEnabled = true;
@@ -293,16 +293,15 @@ namespace BitCalc
                         this.Num2.IsEnabled = true;
                         this.Num1.IsEnabled = true;
                         this.Num0.IsEnabled = true;
-                        this.DecimalPoint.IsEnabled = false;
                         Properties.Settings.Default.KeyDisp = str;
                         break;
                     case "10進数":
-                        this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
-                        this.DispBin.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
-                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Silver;
+                        this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispDec.Foreground = System.Windows.Media.Brushes.Red;
+                        this.DispBin.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Red;
+                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
                         this.NumA.IsEnabled = false;
                         this.NumB.IsEnabled = false;
                         this.NumC.IsEnabled = false;
@@ -319,16 +318,15 @@ namespace BitCalc
                         this.Num2.IsEnabled = true;
                         this.Num1.IsEnabled = true;
                         this.Num0.IsEnabled = true;
-                        this.DecimalPoint.IsEnabled = true;
                         Properties.Settings.Default.KeyDisp = str;
                         break;
                     case "2進数":
-                        this.DispHex.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.DispDec.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.DispBin.Foreground = System.Windows.Media.Brushes.Black;
-                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Silver;
-                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispHex.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispDec.Foreground = System.Windows.Media.Brushes.Black;
+                        this.DispBin.Foreground = System.Windows.Media.Brushes.Red;
+                        this.BtnHex.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnDec.Foreground = System.Windows.Media.Brushes.Black;
+                        this.BtnBin.Foreground = System.Windows.Media.Brushes.Red;
                         this.NumA.IsEnabled = false;
                         this.NumB.IsEnabled = false;
                         this.NumC.IsEnabled = false;
@@ -345,7 +343,6 @@ namespace BitCalc
                         this.Num2.IsEnabled = false;
                         this.Num1.IsEnabled = true;
                         this.Num0.IsEnabled = true;
-                        this.DecimalPoint.IsEnabled = false;
                         Properties.Settings.Default.KeyDisp = str;
                         break;
                     case "A":
@@ -364,7 +361,12 @@ namespace BitCalc
                     case "2":
                     case "1":
                     case "0":
-                    case ".":
+                        if( Properties.Settings.Default.NextValue )
+                        {
+                            Properties.Settings.Default.NextValue = false;
+                            vm.DecValue = "0";
+                        }
+
                         switch( Properties.Settings.Default.KeyDisp )
                         {
                             case "16進数":
@@ -378,7 +380,7 @@ namespace BitCalc
                                 }
                                 break;
                             case "10進数":
-                                vm.DecValue = long.Parse( vm.DecValue.ToString() + str );
+                                vm.DecValue = vm.DecValue + str;
                                 break;
                             case "2進数":
                                 if( vm.BinValue.Equals( "0" ) )
@@ -395,22 +397,73 @@ namespace BitCalc
                         }
                         break;
                     case "AC":
-                        vm.DecValue = 0;
+                        vm.DecValue = "0";
+                        Properties.Settings.Default.Operator = string.Empty;
+                        break;
+                    case "←":
+                        switch( Properties.Settings.Default.KeyDisp )
+                        {
+                            case "16進数":
+                                if( 1 < vm.HexValue.Length )
+                                {
+                                    vm.HexValue = vm.HexValue.Remove( vm.HexValue.Length - 1);
+                                }
+                                else
+                                {
+                                    if( vm.HexValue.Equals( "1" ) )
+                                    {
+                                        vm.HexValue = "0";
+                                    }
+                                }
+                                break;
+                            case "10進数":
+                                if( 1 < vm.DecValue.Length )
+                                {
+                                    vm.DecValue = vm.DecValue.Remove( vm.DecValue.Length - 1 );
+                                }
+                                else
+                                {
+                                    if( vm.DecValue.Equals( "1" ) )
+                                    {
+                                        vm.DecValue = "0";
+                                    }
+                                }
+                                break;
+                            case "2進数":
+                                if( 1 < vm.BinValue.Length )
+                                {
+                                    vm.BinValue = vm.BinValue.Remove( vm.BinValue.Length - 1 );
+                                }
+                                else
+                                {
+                                    if( vm.BinValue.Equals( "1" ) )
+                                    {
+                                        vm.BinValue = "0";
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case "％":
-                        break;
                     case "÷":
-                        break;
                     case "×":
-                        break;
                     case "－":
-                        break;
                     case "＋":
+                        Properties.Settings.Default.PreviousValue = Properties.Settings.Default.CurrentValue;
+                        Properties.Settings.Default.Operator = str;
+                        Properties.Settings.Default.NextValue = true;
                         break;
                     case "＝":
+                        if( !string.IsNullOrEmpty( Properties.Settings.Default.Operator ) )
+                        {
+                            vm.Calc();
+                        }
+                        Properties.Settings.Default.Operator = string.Empty;
+                        Properties.Settings.Default.NextValue = true;
                         break;
                     default:
-                        // 処理なし
                         break;
                 }
 

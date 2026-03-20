@@ -17,6 +17,31 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Silver"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Background" Value="Transparent"/>
@@ -74,7 +99,7 @@
                 <RowDefinition Height="*"/><!-- 5. キー 789× -->
                 <RowDefinition Height="*"/><!-- 6. キー 456－ -->
                 <RowDefinition Height="*"/><!-- 7. キー 123＋ -->
-                <RowDefinition Height="*"/><!-- 8. キー AC0.＝ -->
+                <RowDefinition Height="*"/><!-- 8. キー AC0←＝ -->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/><!-- 0. キー AD741AC-->
@@ -83,9 +108,9 @@
                 <ColumnDefinition Width="*"/><!-- 3. キー ％÷×－＋＝ -->
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispHex" BorderThickness="0,1,0,0" Text="{Binding Path=HexValue, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispDec" BorderThickness="0,1,0,0" Text="{Binding Path=DecValue, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispBin" BorderThickness="0,1,0,0" Text="{Binding Path=BinValue, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispHex" BorderThickness="0,1,0,0" Text="{Binding Path=HexValue, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto"/>
+            <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispDec" BorderThickness="0,1,0,0" Text="{Binding Path=DecValue, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto"/>
+            <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="DispBin" BorderThickness="0,1,0,0" Text="{Binding Path=BinValue, UpdateSourceTrigger=PropertyChanged}" HorizontalScrollBarVisibility="Auto"/>
 
             <Button Grid.Row="0" Grid.Column="3" x:Name="BtnHex" Content="16進数" BorderThickness="1,1,0,0" Click="KeyClick"/>
             <Button Grid.Row="1" Grid.Column="3" x:Name="BtnDec" Content="10進数" BorderThickness="1,1,0,0" Click="KeyClick"/>
@@ -121,10 +146,10 @@
             <Button Grid.Row="7" Grid.Column="2" x:Name="Num3" Content="3" BorderThickness="1,1,0,0" Click="KeyClick"/>
             <Button Grid.Row="7" Grid.Column="3" x:Name="Add" Content="＋" BorderThickness="1,1,0,0" Click="KeyClick"/>
 
-            <!-- 8. キー AC0.＝ -->
+            <!-- 8. キー AC0←＝ -->
             <Button Grid.Row="8" Grid.Column="0" x:Name="AllClear" Content="AC" BorderThickness="0,1,0,1" Click="KeyClick"/>
             <Button Grid.Row="8" Grid.Column="1" x:Name="Num0" Content="0" BorderThickness="1,1,0,1" Click="KeyClick"/>
-            <Button Grid.Row="8" Grid.Column="2" x:Name="DecimalPoint" Content="." BorderThickness="1,1,0,1" Click="KeyClick"/>
+            <Button Grid.Row="8" Grid.Column="2" x:Name="Back" Content="←" BorderThickness="1,1,0,1" Click="KeyClick"/>
             <Button Grid.Row="8" Grid.Column="3" x:Name="Equal" Content="＝" BorderThickness="1,1,0,1" Click="KeyClick"/>
         </Grid>
         
