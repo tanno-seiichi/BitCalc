@@ -60,7 +60,7 @@ namespace BitCalc
             this.SetTransparency( Properties.Settings.Default.Transparent );
 
             /* キーの表示設定 */
-            this.KeyDisp( Properties.Settings.Default.KeyDisp );
+            this.KeyClick( Properties.Settings.Default.KeyDisp );
         }
 
         /// <summary>
@@ -279,23 +279,35 @@ namespace BitCalc
             }
         }
 
+        /// <summary>
+        /// クリックしたキーを処理する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KeyClick( object sender, RoutedEventArgs e )
         {
             if( sender is Button button )
             {
                 if( button.Content is string str )
                 {
-                    this.KeyDisp( str );
+                    this.KeyClick( str );
 
                     if( this.DataContext is MainVM vm )
                     {
-                        vm.UpdateStatusMessage( $"Button '{str}' clicked." );
+                        if( !str.Equals( "＝" ) )
+                        {
+                            vm.UpdateStatusMessage( str );
+                        }
                     }
                 }
             }
         }
 
-        private void KeyDisp( string str )
+        /// <summary>
+        /// クリックしたキーを処理する
+        /// </summary>
+        /// <param name="str"></param>
+        private void KeyClick( string str )
         {
             if( this.DataContext is MainVM vm )
             {
