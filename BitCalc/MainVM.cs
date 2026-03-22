@@ -55,7 +55,7 @@ namespace BitCalc
                     this.m_DecValue = Convert.ToInt64( value, 16 );
 
                     // 10進数を2進数に変換して保存
-                    this.m_BinValue = Convert.ToString( (uint)this.m_DecValue, 2);
+                    this.m_BinValue = Convert.ToString( this.m_DecValue, 2);
 
                     // 10進数を16進数に変換して保存
                     this.m_HexValue = value.ToUpper();
@@ -84,10 +84,10 @@ namespace BitCalc
                     long decValue = string.IsNullOrEmpty( value ) ? 0 : Convert.ToInt64( value, 10 );
 
                     // 10進数を16進数に変換して保存
-                    this.m_HexValue = Convert.ToString( (uint)decValue, 16 ).ToUpper();
+                    this.m_HexValue = Convert.ToString( decValue, 16 ).ToUpper();
 
                     // 10進数を2進数に変換して保存
-                    this.m_BinValue = Convert.ToString( (uint)decValue, 2 );
+                    this.m_BinValue = Convert.ToString( decValue, 2 );
 
                     // 10進数を保存
                     this.m_DecValue = decValue;
@@ -124,7 +124,7 @@ namespace BitCalc
                     this.m_DecValue = Convert.ToInt64( value, 2 );
 
                     // 10進数を16進数に変換して保存
-                    this.m_HexValue = Convert.ToString( (uint)this.m_DecValue, 16 ).ToUpper();
+                    this.m_HexValue = Convert.ToString( this.m_DecValue, 16 ).ToUpper();
 
                     // 2進数を保存
                     this.m_BinValue = value;
@@ -168,13 +168,13 @@ namespace BitCalc
             switch( Properties.Settings.Default.KeyDisp )
             {
                 case "16進数":
-                    this.UpdateStatusMessage( $"{ Convert.ToString( (uint)Properties.Settings.Default.PreviousValue, 16 ).ToUpper() } { Properties.Settings.Default.Operator } { Convert.ToString( (uint)Properties.Settings.Default.CurrentValue, 16 ).ToUpper() } ＝ { Convert.ToString( (uint)result, 16 ).ToUpper() }" );
+                    this.UpdateStatusMessage( $"{ Convert.ToString( Properties.Settings.Default.PreviousValue, 16 ).ToUpper() } { Properties.Settings.Default.Operator } { Convert.ToString( Properties.Settings.Default.CurrentValue, 16 ).ToUpper() } ＝ { Convert.ToString( result, 16 ).ToUpper() }" );
                     break;
                 case "10進数":
                     this.UpdateStatusMessage( $"{ Properties.Settings.Default.PreviousValue } { Properties.Settings.Default.Operator } { Properties.Settings.Default.CurrentValue } ＝ { result }" );
                     break;
                 case "2進数":
-                    this.UpdateStatusMessage( $"{ Convert.ToString( (uint)Properties.Settings.Default.PreviousValue, 2 ).ToUpper() } { Properties.Settings.Default.Operator } { Convert.ToString( (uint)Properties.Settings.Default.CurrentValue, 2 ) } ＝ { Convert.ToString( (uint)result, 2 ) }" );
+                    this.UpdateStatusMessage( $"{ Convert.ToString( Properties.Settings.Default.PreviousValue, 2 ).ToUpper() } { Properties.Settings.Default.Operator } { Convert.ToString( Properties.Settings.Default.CurrentValue, 2 ) } ＝ { Convert.ToString( result, 2 ) }" );
                     break;
                 default:
                     break;
