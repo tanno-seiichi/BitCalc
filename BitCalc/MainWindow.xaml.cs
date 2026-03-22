@@ -59,6 +59,30 @@ namespace BitCalc
             /* 透過表示設定 */
             this.SetTransparency( Properties.Settings.Default.Transparent );
 
+            /* 型設定 */
+            if( this.DataContext is MainVM vm )
+            {
+                switch( Properties.Settings.Default.BaseType )
+                {
+                    case "byte":
+                        this.ByteMenu.IsChecked = true;
+                        break;
+                    case "ushort":
+                        this.UShortMenu.IsChecked = true;
+                        break;
+                    case "uint":
+                        this.UIntMenu.IsChecked = true;
+                        break;
+                    case "ulong":
+                        this.ULongMenu.IsChecked = true;
+                        break;
+                    default:
+                        break;
+                }
+                vm.BaseType = Properties.Settings.Default.BaseType;
+            }
+
+
             /* キーの表示設定 */
             this.KeyClick( Properties.Settings.Default.KeyDisp );
         }
@@ -513,6 +537,29 @@ namespace BitCalc
                         break;
                 }
 
+            }
+        }
+
+        private void TypeClick( object sender, RoutedEventArgs e )
+        {
+            if( sender is MenuItem menuItem )
+            {
+                Properties.Settings.Default.BaseType = menuItem.Header.ToString();
+
+                // 一旦すべてアンチェック
+                this.ByteMenu.IsChecked = false;
+                this.UShortMenu.IsChecked = false;
+                this.UIntMenu.IsChecked = false;
+                this.ULongMenu.IsChecked = false;
+
+                // クリックされたメニューをチェック
+                menuItem.IsChecked = true;
+
+                // ViewModelを更新
+                if( this.DataContext is MainVM vm )
+                {
+                    vm.BaseType = menuItem.Header.ToString();
+                }
             }
         }
 

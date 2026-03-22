@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Net.Http.Headers;
 using System.Reflection;
 
 namespace BitCalc
@@ -35,6 +36,17 @@ namespace BitCalc
             this.RaisePropertyChanged( nameof( this.StatusMessage ) );
         }
 
+        private string m_BaseType = "uint";
+        public string BaseType
+        {
+            get { return this.m_BaseType; }
+            set
+            {
+                this.m_BaseType = value;
+                this.DecValue = this.DecValue;
+            }
+        }
+
         private string m_HexValue = 0.ToString();
         public string HexValue
         {
@@ -51,14 +63,54 @@ namespace BitCalc
 
                 try
                 {
-                    // 16進数を10進数に変換して保存
-                    this.m_DecValue = Convert.ToInt64( value, 16 );
+                    // 文字列を10進数に変換
+                    ulong decValue = string.IsNullOrEmpty( value ) ? 0 : Convert.ToUInt64( value, 16 );
 
-                    // 10進数を2進数に変換して保存
-                    this.m_BinValue = Convert.ToString( (uint)this.m_DecValue, 2);
+                    switch( this.BaseType )
+                    {
+                        case "byte":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked((byte)decValue), 16 ).ToUpper();
 
-                    // 10進数を16進数に変換して保存
-                    this.m_HexValue = value.ToUpper();
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((byte)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked((byte)decValue), 2 );
+                            break;
+                        case "ushort":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked((ushort)decValue), 16 ).ToUpper();
+
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((ushort)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked((ushort)decValue), 2 );
+                            break;
+                        case "uint":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked((uint)decValue), 16 ).ToUpper();
+
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((uint)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked((uint)decValue), 2 );
+                            break;
+                        case "uint64":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = decValue.ToString( "X)" );
+
+                            // 10進数を保存
+                            this.m_DecValue = decValue;
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = MainVM.ConvertUlongToBinary( decValue );
+                            break;
+                        default:
+                            break;
+                    }
 
                     // 現在の値を記録
                     Properties.Settings.Default.CurrentValue = this.m_DecValue;
@@ -72,7 +124,7 @@ namespace BitCalc
             }
         }
 
-        private long m_DecValue = 0;
+        private ulong m_DecValue = 0;
         public string DecValue
         {
             get { return m_DecValue.ToString(); }
@@ -81,16 +133,53 @@ namespace BitCalc
                 try
                 {
                     // 文字列を10進数に変換
-                    long decValue = string.IsNullOrEmpty( value ) ? 0 : Convert.ToInt64( value, 10 );
+                    ulong decValue = string.IsNullOrEmpty( value ) ? 0 : Convert.ToUInt64( value, 10 );
 
-                    // 10進数を16進数に変換して保存
-                    this.m_HexValue = Convert.ToString( (uint)decValue, 16 ).ToUpper();
+                    switch( this.BaseType )
+                    {
+                        case "byte":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked( (byte)decValue ), 16 ).ToUpper();
 
-                    // 10進数を2進数に変換して保存
-                    this.m_BinValue = Convert.ToString( (uint)decValue, 2 );
+                            // 10進数を保存
+                            this.m_DecValue = unchecked( (byte)decValue );
 
-                    // 10進数を保存
-                    this.m_DecValue = decValue;
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked( (byte)decValue ), 2 );
+                            break;
+                        case "ushort":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked( (ushort)decValue ), 16 ).ToUpper();
+
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((ushort)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked( (ushort)decValue ), 2 );
+                            break;
+                        case "uint":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked( (uint)decValue ), 16 ).ToUpper();
+
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((uint)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked( (uint)decValue ), 2 );
+                            break;
+                        case "uint64":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = decValue.ToString("X)");
+
+                            // 10進数を保存
+                            this.m_DecValue = decValue;
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = MainVM.ConvertUlongToBinary( decValue );
+                            break;
+                        default:
+                            break;
+                    }
 
                     // 現在の値を記録
                     Properties.Settings.Default.CurrentValue = this.m_DecValue;
@@ -120,14 +209,54 @@ namespace BitCalc
 
                 try
                 {
-                    // 2進数を10進数に変換して保存
-                    this.m_DecValue = Convert.ToInt64( value, 2 );
+                    // 文字列を10進数に変換
+                    ulong decValue = string.IsNullOrEmpty( value ) ? 0 : Convert.ToUInt64( value, 2 );
 
-                    // 10進数を16進数に変換して保存
-                    this.m_HexValue = Convert.ToString( (uint)this.m_DecValue, 16 ).ToUpper();
+                    switch( this.BaseType )
+                    {
+                        case "byte":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked((byte)decValue), 16 ).ToUpper();
 
-                    // 2進数を保存
-                    this.m_BinValue = value;
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((byte)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked((byte)decValue), 2 );
+                            break;
+                        case "ushort":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked((ushort)decValue), 16 ).ToUpper();
+
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((ushort)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked((ushort)decValue), 2 );
+                            break;
+                        case "uint":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = Convert.ToString( unchecked((uint)decValue), 16 ).ToUpper();
+
+                            // 10進数を保存
+                            this.m_DecValue = unchecked((uint)decValue);
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = Convert.ToString( unchecked((uint)decValue), 2 );
+                            break;
+                        case "uint64":
+                            // 10進数を16進数に変換して保存
+                            this.m_HexValue = decValue.ToString( "X)" );
+
+                            // 10進数を保存
+                            this.m_DecValue = decValue;
+
+                            // 10進数を2進数に変換して保存
+                            this.m_BinValue = MainVM.ConvertUlongToBinary( decValue );
+                            break;
+                        default:
+                            break;
+                    }
 
                     // 現在の値を記録
                     Properties.Settings.Default.CurrentValue = this.m_DecValue;
@@ -143,7 +272,7 @@ namespace BitCalc
 
         public void Calc()
         {
-            long result = 0;
+            ulong result = 0;
             switch( Properties.Settings.Default.Operator )
             {
                 case "％":
@@ -188,6 +317,18 @@ namespace BitCalc
             this.RaisePropertyChanged( nameof( this.HexValue ) );
             this.RaisePropertyChanged( nameof( this.DecValue ) );
             this.RaisePropertyChanged( nameof( this.BinValue ) );
+        }
+
+        private static string ConvertUlongToBinary( ulong value )
+        {
+            char[] bits = new char[64];
+
+            for( int i = 0; i < 64; i++ )
+            {
+                bits[63 - i] = ( ( value >> i ) & 1 ) == 1 ? '1' : '0';
+            }
+
+            return new string( bits ).TrimStart( '0' );
         }
 
     }

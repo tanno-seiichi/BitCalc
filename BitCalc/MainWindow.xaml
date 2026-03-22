@@ -87,6 +87,12 @@
                 <MenuItem Header="現在のウインドウを閉じる(_W)" Click="CloseWindow_Click"/>
                 <MenuItem Header="アプリケーション終了(_X)" Click="Shutdown_Click"/>
             </MenuItem>
+            <MenuItem Header="設定(_S)">
+                <MenuItem Header="byte" Click="TypeClick" x:Name="ByteMenu"/>
+                <MenuItem Header="ushort" Click="TypeClick" x:Name="UShortMenu"/>
+                <MenuItem Header="uint" Click="TypeClick" x:Name="UIntMenu"/>
+                <MenuItem Header="ulong" Click="TypeClick" x:Name="ULongMenu"/>
+            </MenuItem>
             <MenuItem Header="透過表示(_T)" Click="Transparency_Click" x:Name="TransparencyMenu"/>
             <MenuItem Header="新規ウインドウ(_N)" Click="NewWindow_Click"/>
             <MenuItem Header="バージョン情報(_A)" Click="ShowAboutWindow_Click"/>

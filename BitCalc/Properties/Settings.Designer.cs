@@ -62,9 +62,9 @@ namespace BitCalc.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public long PreviousValue {
+        public ulong PreviousValue {
             get {
-                return ((long)(this["PreviousValue"]));
+                return ((ulong)(this["PreviousValue"]));
             }
             set {
                 this["PreviousValue"] = value;
@@ -74,9 +74,9 @@ namespace BitCalc.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public long CurrentValue {
+        public ulong CurrentValue {
             get {
-                return ((long)(this["CurrentValue"]));
+                return ((ulong)(this["CurrentValue"]));
             }
             set {
                 this["CurrentValue"] = value;
@@ -104,6 +104,18 @@ namespace BitCalc.Properties {
             }
             set {
                 this["NextValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("uint")]
+        public string BaseType {
+            get {
+                return ((string)(this["BaseType"]));
+            }
+            set {
+                this["BaseType"] = value;
             }
         }
     }
